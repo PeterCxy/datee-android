@@ -2,9 +2,9 @@ package ee.dat.ui
 
 import android.graphics.Rect
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import ee.dat.R
 import ee.dat.util.*
 import kotlinx.android.synthetic.main.activity_wizard.*

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
-    <android.support.design.widget.AppBarLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                     android:layout_width="match_parent"
+                                                     android:layout_height="match_parent">
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:stateListAnimator="@animator/appbar_animator">
-        <android.support.design.widget.CollapsingToolbarLayout
+        <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/collapsing_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -22,7 +22,7 @@
                     android:layout_height="match_parent"
                     android:background="?attr/colorPrimary"
                     app:layout_collapseMode="parallax"/>
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
@@ -37,16 +37,16 @@
                     android:indeterminate="true"
                     android:visibility="gone"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
             android:id="@+id/wizard_frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/wizard_fab"
             android:layout_width="56dp"
             android:layout_height="56dp"
@@ -54,4 +54,4 @@
             android:src="@drawable/ic_check_white_24dp"
             app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="end|bottom"/>
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

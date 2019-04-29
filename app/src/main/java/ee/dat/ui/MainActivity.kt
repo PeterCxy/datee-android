@@ -1,7 +1,7 @@
 package ee.dat.ui
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ee.dat.R
 import ee.dat.util.LoginStateManager
