@@ -50,7 +50,7 @@ class RegisterActivity: WizardActivity() {
     private fun setupValidators() {
         txt_reg_email.validate({ it.isValidEmail() },
             getString(R.string.invalid, getString(R.string.reg_email)))
-        txt_reg_passwd.validate({ it.length >= 4 }, getString(R.string.password_weak))
+        txt_reg_passwd.validate({ it.length >= 8 }, getString(R.string.password_weak))
         txt_reg_first_name.validate({ !it.contains(" ") },
             getString(R.string.invalid, getString(R.string.reg_first_name)))
         txt_reg_last_name.validate({ !it.contains(" ") },
