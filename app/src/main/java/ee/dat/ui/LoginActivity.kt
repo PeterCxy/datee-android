@@ -8,7 +8,7 @@ import ee.dat.util.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 
 class LoginActivity: WizardActivity() {
@@ -22,7 +22,7 @@ class LoginActivity: WizardActivity() {
         if (working) return
         if (!login_root.assertTextNoErrorAndFilled()) return
         working = true
-        GlobalScope.launch(Dispatchers.Main) job@{
+        GlobalScope.async(Dispatchers.Main) job@{
             val loginTask = DateeApi.api.authLogin(
                 username = txt_login_email.str,
                 password = txt_login_passwd.str
