@@ -13,15 +13,20 @@
             android:supportsRtl="false"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="${usesCleartextTraffic}">
-        <activity android:name=".ui.MainActivity">
+        <activity
+                android:launchMode="singleTop"
+                android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.WelcomeActivity"/>
         <activity
+                android:launchMode="singleTop"
+                android:name=".ui.WelcomeActivity"/>
+        <activity
+                android:launchMode="singleTop"
                 android:name=".ui.RegisterActivity"
                 android:label="@string/register"/>
     </application>
