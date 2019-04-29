@@ -15,6 +15,7 @@ interface DateeApi {
         private const val CLIENT_ID = "default"
         private const val CLIENT_SECRET = "123456789"
         val api: DateeApi by lazy {
+            // TODO: Implement something to insert the Authorization header.
             val retrofit = with(Retrofit.Builder()) {
                 baseUrl(API_ENDPOINT)
                 addConverterFactory(GsonConverterFactory.create())
