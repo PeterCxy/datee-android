@@ -36,7 +36,7 @@ class LoginActivity: WizardActivity() {
             }
             // Login success, store the information
             LoginStateManager.setAccessToken(
-                result!!.accessToken, System.currentTimeMillis() + result.expiresIn)
+                result!!.accessToken, result.expiresIn)
             LoginStateManager.refreshToken = result.refreshToken
             finish()
         }

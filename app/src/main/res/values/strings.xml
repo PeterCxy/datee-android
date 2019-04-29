@@ -23,4 +23,6 @@
     <string name="request_failure">An unknown error occurred during request</string>
     <string name="password_weak">Password too weak</string>
     <string name="login_failure">Failed to log in. Please check the validity of email / password pair.</string>
+    <string name="refresh_failure">You are logged out from server. Please log-in again.</string>
+    <string name="please_wait">Just a minute...</string>
 </resources>

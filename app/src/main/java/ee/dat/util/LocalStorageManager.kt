@@ -9,6 +9,10 @@ object LocalStorageManager {
         DateeApplication.context.getSharedPreferences("local_storage", Context.MODE_PRIVATE)
     }
 
+    fun deleteKey(key: String) {
+        prefs.edit().remove(key).apply()
+    }
+
     fun getString(key: String): String? {
         return prefs.getString(key, null)
     }

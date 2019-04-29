@@ -19,10 +19,19 @@ object LoginStateManager {
             LocalStorageManager.getString(PREF_ACCESS_TOKEN)
         }
 
-    fun setAccessToken(token: String, validUntil: Long) {
+    fun setAccessToken(token: String, expiresIn: Long) {
         with (LocalStorageManager) {
             putString(PREF_ACCESS_TOKEN, token)
-            putLong(PREF_ACCESS_TOKEN_VALID_UNTIL, validUntil)
+            putLong(PREF_ACCESS_TOKEN_VALID_UNTIL, System.currentTimeMillis() + expiresIn * 1000)
+        }
+    }
+
+    // Used when no access token is set and cannot refresh
+    fun clearTokens() {
+        with (LocalStorageManager) {
+            deleteKey(PREF_ACCESS_TOKEN)
+            deleteKey(PREF_ACCESS_TOKEN_VALID_UNTIL)
+            deleteKey(PREF_REFRESH_TOKEN)
         }
     }
 
