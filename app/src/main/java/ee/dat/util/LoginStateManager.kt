@@ -13,7 +13,7 @@ object LoginStateManager {
 
     val accessToken: String?
         get() = if (LocalStorageManager.getLong(PREF_ACCESS_TOKEN_VALID_UNTIL)
-            >= System.currentTimeMillis()) {
+            <= System.currentTimeMillis()) {
             null
         } else {
             LocalStorageManager.getString(PREF_ACCESS_TOKEN)
