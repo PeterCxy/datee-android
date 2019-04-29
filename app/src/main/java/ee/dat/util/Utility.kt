@@ -90,11 +90,29 @@ inline fun <T> Call<T>.executeMaybe(): MaybeResponse<T> {
     }
 }
 
+inline fun <T> MaybeResponse<T>.processResultGeneral(err: (String?) -> Unit): T? {
+    return if (success) {
+        this.resp!!.processResultGeneral(err)
+    } else {
+        err(this.err)
+        null
+    }
+}
+
 inline fun <T> MaybeResponse<ApiResult<T>>.processResult(err: (String?) -> Unit): T? {
     return if (success) {
         this.resp!!.processResult(err)
     } else {
         err(this.err)
+        null
+    }
+}
+
+inline fun <T> Response<T>.processResultGeneral(err: (String?) -> Unit): T? {
+    return if (isSuccessful) {
+        body()
+    } else {
+        err(null)
         null
     }
 }

@@ -1,19 +1,26 @@
 package ee.dat.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import ee.dat.R
-import ee.dat.util.LoginStateManager
-import ee.dat.util.LoginStateManager.LoginState
+import ee.dat.util.*
 
 class MainActivity : AppCompatActivity() {
+    var initialzed = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+    }
 
-        when (LoginStateManager.getLoginState()) {
-            LoginState.LoggedOut -> startWelcomeActivity()
+    override fun onResume() {
+        super.onResume()
+        if (!initialzed) tryInitialize()
+    }
+
+    private fun tryInitialize() {
+        when (LoginStateManager.loginState) {
+            LoginStateManager.LoginState.LoggedOut -> startWelcomeActivity()
             // TODO: Manage the other cases
         }
     }
