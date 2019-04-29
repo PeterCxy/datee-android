@@ -66,7 +66,12 @@ class MainActivity : AppCompatActivity() {
         val result = withContext(Dispatchers.IO) {
             refreshTask.executeMaybe()
         }.processResultGeneral {
-            // TODO: This is sh*t. When network breaks, the login state will be cleared.
+            if (LoginStateManager.loginState == LoginStateManager.LoginState.LoggedIn) {
+                // If it failed but we didn't need refresh anyway, just return and pretend nothing happened
+                // but the application will probably fail if even refreshing fails...
+                return@coroutineScope true
+            }
+            // TODO: This is sh*t. When network breaks, but refresh is needed, the login state will be cleared.
             //  Refactor this somehow to accommodate for network failure.
             LoginStateManager.clearTokens()
             Toast.makeText(this@MainActivity, R.string.refresh_failure, Toast.LENGTH_LONG).show()
