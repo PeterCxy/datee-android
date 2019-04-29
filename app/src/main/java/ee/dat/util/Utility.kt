@@ -55,6 +55,22 @@ fun ViewGroup.assertTextNoErrorAndFilled(): Boolean {
     return true
 }
 
+fun ViewGroup.findLastEditText(): EditText? {
+    var cur: EditText? = null;
+    for (i in 0 until childCount) {
+        val child = getChildAt(i)
+        if (child is EditText) {
+            cur = child
+        } else if (child is ViewGroup) {
+            val e = child.findLastEditText()
+            if (e != null) {
+                cur = e
+            }
+        }
+    }
+    return cur
+}
+
 val EditText.str: String
     get() {
         return this.text!!.toString().trim()

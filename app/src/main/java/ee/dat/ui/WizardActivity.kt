@@ -4,6 +4,7 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import ee.dat.R
 import ee.dat.util.*
@@ -54,6 +55,15 @@ abstract class WizardActivity: AppCompatActivity() {
     fun setWizardContentView(resid: Int) {
         val inflater = LayoutInflater.from(this)
         inflater.inflate(resid, wizard_frame, true)
+        // The DONE event on the last EditText implies submit
+        // this event is sent from IME
+        wizard_frame.findLastEditText()!!.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                onFabClick()
+                true
+            }
+            false
+        }
     }
 
     var working = false
