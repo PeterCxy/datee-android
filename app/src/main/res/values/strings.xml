@@ -13,4 +13,9 @@
     <string name="reg_gender">Biological Gender</string>
     <string name="reg_gender_male">Male</string>
     <string name="reg_gender_female">Female</string>
+    <string name="reg_success">Registration successful. Please log-in with your account details.</string>
+
+    <string name="invalid">Invalid %s</string>
+    <string name="request_failure">An unknown error occurred during request</string>
+    <string name="password_weak">Password too weak</string>
 </resources>

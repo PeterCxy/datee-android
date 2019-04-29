@@ -4,7 +4,9 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
+import android.view.View
 import ee.dat.R
+import ee.dat.util.*
 import kotlinx.android.synthetic.main.activity_wizard.*
 
 abstract class WizardActivity: AppCompatActivity() {
@@ -30,12 +32,15 @@ abstract class WizardActivity: AppCompatActivity() {
             }
             lastKeyboardState = keyboardState
         }
+        wizard_fab.setOnClickListener { onFabClick() }
     }
 
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
     }
+
+    open fun onFabClick() {}
 
     private fun keyboardShown(): Boolean {
         val softKeyboardHeight = 100
@@ -50,4 +55,18 @@ abstract class WizardActivity: AppCompatActivity() {
         val inflater = LayoutInflater.from(this)
         inflater.inflate(resid, wizard_frame, true)
     }
+
+    var working = false
+        set(value) {
+            if (value != field) {
+                if (value) {
+                    wizard_progress.visibility = View.VISIBLE
+                    Utility.disableEnableControls(false, wizard_frame)
+                } else {
+                    wizard_progress.visibility = View.GONE
+                    Utility.disableEnableControls(true, wizard_frame)
+                }
+            }
+            field = value
+        }
 }
