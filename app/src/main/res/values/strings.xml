@@ -3,4 +3,14 @@
     <string name="welcome">Find your soul mate.</string>
     <string name="login">Log-in</string>
     <string name="register">Register</string>
+
+    <!-- Registration -->
+    <string name="reg_email">Email</string>
+    <string name="reg_passwd">Password</string>
+    <string name="reg_first_name">First Name</string>
+    <string name="reg_last_name">Last Name</string>
+    <string name="reg_age">Age</string>
+    <string name="reg_gender">Biological Gender</string>
+    <string name="reg_gender_male">Male</string>
+    <string name="reg_gender_female">Female</string>
 </resources>
