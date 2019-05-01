@@ -45,8 +45,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initializeAsync() = GlobalScope.launch(Dispatchers.Main) {
-        val dialog = ProgressDialog(this@MainActivity)
-        with(dialog) {
+        val dialog = ProgressDialog(this@MainActivity).apply {
             setCancelable(false)
             setMessage(getString(R.string.please_wait))
             isIndeterminate = true
