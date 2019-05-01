@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import ee.dat.DateeApplication
 import ee.dat.R
 import ee.dat.api.DateeApi
+import ee.dat.bean.State
 import ee.dat.util.*
 import kotlinx.coroutines.*
 
@@ -38,6 +40,10 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(this, WelcomeActivity::class.java))
     }
 
+    private fun startPhotoUploadActivity() {
+        startActivity(Intent(this, PhotoUploadActivity::class.java))
+    }
+
     private fun initializeAsync() = GlobalScope.async(Dispatchers.Main) {
         val dialog = ProgressDialog(this@MainActivity)
         with(dialog) {
@@ -59,9 +65,17 @@ class MainActivity : AppCompatActivity() {
 
         val user = withContext(Dispatchers.IO) {
             DateeApi.api.whoami().execute()
-        }.onErr { dialog.hide(); showErrorToast(it); finish(); return@async }
+        }.onErr { dialog.hide(); showErrorToast(it); finish(); return@async }!!
 
         Log.d(TAG, user.toString())
+
+        // Save to the global context
+        DateeApplication.curUser = user
+
+        when (user.state) {
+            // Registered, but photos aren't uploaded yet or haven't uploaded enough
+            State.Registered -> startPhotoUploadActivity()
+        }
 
         dialog.hide()
     }

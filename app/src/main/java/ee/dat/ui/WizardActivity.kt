@@ -57,7 +57,7 @@ abstract class WizardActivity: AppCompatActivity() {
         inflater.inflate(resid, wizard_frame, true)
         // The DONE event on the last EditText implies submit
         // this event is sent from IME
-        wizard_frame.findLastEditText()!!.setOnEditorActionListener { _, actionId, _ ->
+        wizard_frame.findLastEditText()?.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 onFabClick()
                 true

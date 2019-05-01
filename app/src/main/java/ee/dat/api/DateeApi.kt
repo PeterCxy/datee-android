@@ -5,6 +5,7 @@ import ee.dat.bean.OAuthResponse
 import ee.dat.bean.RegisterUserInfo
 import ee.dat.bean.User
 import ee.dat.util.*
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -81,4 +82,12 @@ interface DateeApi {
     fun register(@Body info: RegisterUserInfo): Call<ApiResult<Void>>
     @GET("user/whoami")
     fun whoami(): Call<ApiResult<User>>
+
+    // === Photo APIs ===
+    @Multipart
+    @PUT("photos/upload")
+    // Actual return type should be Photo, but of no use here
+    fun uploadPhoto(@Part file: MultipartBody.Part): Call<ApiResult<Void>>
+    @GET("photos/list/{uid}")
+    fun listPhotos(@Path("uid") uid: String): Call<ApiResult<List<String>>>
 }

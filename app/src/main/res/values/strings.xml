@@ -19,10 +19,16 @@
     <string name="login_email">Email</string>
     <string name="login_passwd">Password</string>
 
+    <!-- Photo Upload -->
+    <string name="upp_upload_photos">Upload Photos</string>
+    <string name="upp_already_uploaded">You have uploaded %d of %d (required) photos.</string>
+    <string name="upp_not_enough">You have to upload %d photos before leaving.</string>
+
     <string name="invalid">Invalid %s</string>
     <string name="request_failure">An unknown error occurred during request</string>
     <string name="password_weak">Password too weak</string>
     <string name="login_failure">Failed to log in. Please check the validity of email / password pair.</string>
     <string name="refresh_failure">You are logged out from server. Please log-in again.</string>
     <string name="please_wait">Just a minute...</string>
+    <string name="choose_photo">Choose a picture</string>
 </resources>
