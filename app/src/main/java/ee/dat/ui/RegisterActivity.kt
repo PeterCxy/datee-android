@@ -12,7 +12,7 @@ import ee.dat.util.*
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class RegisterActivity: WizardActivity() {
@@ -26,7 +26,7 @@ class RegisterActivity: WizardActivity() {
         if (working) return
         if (!register_root.assertTextNoErrorAndFilled()) return
         working = true
-        GlobalScope.async(Dispatchers.Main) job@{
+        GlobalScope.launch(Dispatchers.Main) job@{
             val registerTask = DateeApi.api.register(RegisterUserInfo(
                 email = txt_reg_email.str,
                 password = txt_reg_passwd.str,

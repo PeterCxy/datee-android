@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(this, PhotoUploadActivity::class.java))
     }
 
-    private fun initializeAsync() = GlobalScope.async(Dispatchers.Main) {
+    private fun initializeAsync() = GlobalScope.launch(Dispatchers.Main) {
         val dialog = ProgressDialog(this@MainActivity)
         with(dialog) {
             setCancelable(false)
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "refresh_token=${LoginStateManager.refreshToken}")
         if (!startRefreshToken()) {
             dialog.hide()
-            return@async
+            return@launch
         }
         Log.d(TAG, "refreshed!")
         Log.d(TAG, "access_token=${LoginStateManager.accessToken}")
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
         val user = withContext(Dispatchers.IO) {
             DateeApi.api.whoami().execute()
-        }.onErr { dialog.hide(); showErrorToast(it); finish(); return@async }!!
+        }.onErr { dialog.hide(); showErrorToast(it); finish(); return@launch }!!
 
         Log.d(TAG, user.toString())
 

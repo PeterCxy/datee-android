@@ -38,7 +38,7 @@ class PhotoUploadActivity: WizardActivity() {
         setWizardContentView(R.layout.activity_upload_photos)
         upp_upload.setOnClickListener { addPhoto() }
 
-        GlobalScope.async(Dispatchers.Main) {
+        GlobalScope.launch(Dispatchers.Main) {
             refreshUploadedCount()
         }
     }
@@ -65,7 +65,7 @@ class PhotoUploadActivity: WizardActivity() {
             // Photo acquired
             val imageUri = data?.data ?: Uri.fromFile(currentPhotoFile)
 
-            GlobalScope.async(Dispatchers.Main) {
+            GlobalScope.launch(Dispatchers.Main) {
                 doUploadPhoto(imageUri)
             }
         }
