@@ -45,38 +45,35 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initializeAsync() = GlobalScope.launch(Dispatchers.Main) {
-        val dialog = ProgressDialog(this@MainActivity).apply {
+        ProgressDialog(this@MainActivity).apply {
             setCancelable(false)
             setMessage(getString(R.string.please_wait))
             isIndeterminate = true
             show()
-        }
+        }.also {
+            Log.d(TAG, "access_token=${LoginStateManager.accessToken}")
+            Log.d(TAG, "refresh_token=${LoginStateManager.refreshToken}")
+            if (!startRefreshToken()) {
+                return@also
+            }
+            Log.d(TAG, "refreshed!")
+            Log.d(TAG, "access_token=${LoginStateManager.accessToken}")
+            Log.d(TAG, "refresh_token=${LoginStateManager.refreshToken}")
 
-        Log.d(TAG, "access_token=${LoginStateManager.accessToken}")
-        Log.d(TAG, "refresh_token=${LoginStateManager.refreshToken}")
-        if (!startRefreshToken()) {
-            dialog.hide()
-            return@launch
-        }
-        Log.d(TAG, "refreshed!")
-        Log.d(TAG, "access_token=${LoginStateManager.accessToken}")
-        Log.d(TAG, "refresh_token=${LoginStateManager.refreshToken}")
+            val user = withContext(Dispatchers.IO) {
+                DateeApi.api.whoami().executeMaybe()
+            }.onErr { showErrorToast(it); finish(); return@also }!!
 
-        val user = withContext(Dispatchers.IO) {
-            DateeApi.api.whoami().executeMaybe()
-        }.onErr { dialog.hide(); showErrorToast(it); finish(); return@launch }!!
+            Log.d(TAG, user.toString())
 
-        Log.d(TAG, user.toString())
+            // Save to the global context
+            DateeApplication.curUser = user
 
-        // Save to the global context
-        DateeApplication.curUser = user
-
-        when (user.state) {
-            // Registered, but photos aren't uploaded yet or haven't uploaded enough
-            State.Registered -> startPhotoUploadActivity()
-        }
-
-        dialog.hide()
+            when (user.state) {
+                // Registered, but photos aren't uploaded yet or haven't uploaded enough
+                State.Registered -> startPhotoUploadActivity()
+            }
+        }.hide()
     }
 
     private suspend fun startRefreshToken() = coroutineScope {
