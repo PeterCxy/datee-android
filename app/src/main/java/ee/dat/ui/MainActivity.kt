@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "refresh_token=${LoginStateManager.refreshToken}")
 
         val user = withContext(Dispatchers.IO) {
-            DateeApi.api.whoami().execute()
+            DateeApi.api.whoami().executeMaybe()
         }.onErr { dialog.hide(); showErrorToast(it); finish(); return@launch }!!
 
         Log.d(TAG, user.toString())
