@@ -3,6 +3,9 @@ package ee.dat.api
 import ee.dat.bean.ApiResult
 import ee.dat.bean.OAuthResponse
 import ee.dat.bean.RegisterUserInfo
+import ee.dat.bean.User
+import ee.dat.util.*
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -15,10 +18,25 @@ interface DateeApi {
         private const val CLIENT_ID = "default"
         private const val CLIENT_SECRET = "123456789"
         val api: DateeApi by lazy {
-            // TODO: Implement something to insert the Authorization header.
+            val httpClient = with(OkHttpClient.Builder()) {
+                addInterceptor {
+                    // Add Authorization header if accessToken is present
+                    if (LoginStateManager.accessToken != null) {
+                        it.proceed(with(it.request().newBuilder()) {
+                            addHeader("Authorization", "Bearer ${LoginStateManager.accessToken}")
+                            build()
+                        })
+                    } else {
+                        it.proceed(it.request())
+                    }
+                }
+                build()
+            }
+
             val retrofit = with(Retrofit.Builder()) {
                 baseUrl(API_ENDPOINT)
                 addConverterFactory(GsonConverterFactory.create())
+                client(httpClient)
                 build()
             }
             retrofit.create(DateeApi::class.java)
@@ -61,4 +79,6 @@ interface DateeApi {
     // === User APIs ===
     @PUT("user/register")
     fun register(@Body info: RegisterUserInfo): Call<ApiResult<Void>>
+    @GET("user/whoami")
+    fun whoami(): Call<ApiResult<User>>
 }

@@ -56,6 +56,13 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "refreshed!")
         Log.d(TAG, "access_token=${LoginStateManager.accessToken}")
         Log.d(TAG, "refresh_token=${LoginStateManager.refreshToken}")
+
+        val user = withContext(Dispatchers.IO) {
+            DateeApi.api.whoami().execute()
+        }.onErr { dialog.hide(); showErrorToast(it); finish(); return@async }
+
+        Log.d(TAG, user.toString())
+
         dialog.hide()
     }
 
