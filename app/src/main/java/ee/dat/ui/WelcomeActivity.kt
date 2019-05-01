@@ -15,6 +15,10 @@ class WelcomeActivity: AppCompatActivity() {
         btn_login.setOnClickListener { this.startLoginActivity() }
     }
 
+    override fun onBackPressed() {
+        // Block BACK button.
+    }
+
     override fun onResume() {
         super.onResume()
         // If the user has logged in, exit this activity
