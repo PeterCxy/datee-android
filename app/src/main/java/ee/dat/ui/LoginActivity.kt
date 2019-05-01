@@ -29,7 +29,7 @@ class LoginActivity: WizardActivity() {
             )
             val result = withContext(Dispatchers.IO) {
                 loginTask.executeMaybe()
-            }.processResultGeneral {
+            }.onErrGeneral {
                 Toast.makeText(this@LoginActivity, R.string.login_failure, Toast.LENGTH_SHORT).show()
                 working = false
                 return@job

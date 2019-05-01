@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         val refreshTask = DateeApi.api.authRefresh(refresh_token = LoginStateManager.refreshToken!!)
         val result = withContext(Dispatchers.IO) {
             refreshTask.executeMaybe()
-        }.processResultGeneral {
+        }.onErrGeneral {
             if (LoginStateManager.loginState == LoginStateManager.LoginState.LoggedIn) {
                 // If it failed but we didn't need refresh anyway, just return and pretend nothing happened
                 // but the application will probably fail if even refreshing fails...

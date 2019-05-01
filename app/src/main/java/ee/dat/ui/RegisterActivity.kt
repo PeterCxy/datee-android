@@ -40,7 +40,7 @@ class RegisterActivity: WizardActivity() {
             ))
             withContext(Dispatchers.IO) {
                     registerTask.executeMaybe()
-            }.processResult { showErrorToast(it); working = false; return@job }
+            }.onErr { showErrorToast(it); working = false; return@job }
             // Successful
             Toast.makeText(this@RegisterActivity, R.string.reg_success, Toast.LENGTH_LONG).show()
             finish()

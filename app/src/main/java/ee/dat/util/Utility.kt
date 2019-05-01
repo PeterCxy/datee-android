@@ -90,25 +90,25 @@ inline fun <T> Call<T>.executeMaybe(): MaybeResponse<T> {
     }
 }
 
-inline fun <T> MaybeResponse<T>.processResultGeneral(err: (String?) -> Unit): T? {
+inline fun <T> MaybeResponse<T>.onErrGeneral(err: (String?) -> Unit): T? {
     return if (success) {
-        this.resp!!.processResultGeneral(err)
+        this.resp!!.onErrGeneral(err)
     } else {
         err(this.err)
         null
     }
 }
 
-inline fun <T> MaybeResponse<ApiResult<T>>.processResult(err: (String?) -> Unit): T? {
+inline fun <T> MaybeResponse<ApiResult<T>>.onErr(err: (String?) -> Unit): T? {
     return if (success) {
-        this.resp!!.processResult(err)
+        this.resp!!.onErr(err)
     } else {
         err(this.err)
         null
     }
 }
 
-inline fun <T> Response<T>.processResultGeneral(err: (String?) -> Unit): T? {
+inline fun <T> Response<T>.onErrGeneral(err: (String?) -> Unit): T? {
     return if (isSuccessful) {
         body()
     } else {
@@ -117,7 +117,7 @@ inline fun <T> Response<T>.processResultGeneral(err: (String?) -> Unit): T? {
     }
 }
 
-inline fun <T> Response<ApiResult<T>>.processResult(err: (String?) -> Unit): T? {
+inline fun <T> Response<ApiResult<T>>.onErr(err: (String?) -> Unit): T? {
     return if (isSuccessful) {
         val body = body()!!
         if (body.ok) {
