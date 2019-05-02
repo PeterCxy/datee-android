@@ -5,6 +5,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
 import android.view.ViewGroup
+import android.widget.AbsSeekBar
 import android.widget.EditText
 import android.widget.Toast
 import com.google.gson.Gson
@@ -15,6 +16,12 @@ import ee.dat.bean.ApiResult
 import retrofit2.Call
 import retrofit2.Response
 import java.io.IOException
+
+fun isAllowedAge(age: String) = isAllowedAge(age.toInt())
+
+fun isAllowedAge(age: Int): Boolean {
+    return age in (18..60)
+}
 
 // From <https://proandroiddev.com/easy-edittext-content-validation-with-kotlin-316d835d25b3>
 fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
@@ -50,6 +57,18 @@ fun ViewGroup.assertTextNoErrorAndFilled(): Boolean {
             return false
         } else if (child is ViewGroup) {
             if (!child.assertTextNoErrorAndFilled()) return false
+        }
+    }
+    return true
+}
+
+fun ViewGroup.assertSeekBarAllNotZero(): Boolean {
+    for (i in 0 until childCount) {
+        val child = getChildAt(i)
+        if (child is AbsSeekBar && child.progress == 0) {
+            return false
+        } else if (child is ViewGroup) {
+            if (!child.assertSeekBarAllNotZero()) return false
         }
     }
     return true

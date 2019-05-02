@@ -44,6 +44,14 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(this, PhotoUploadActivity::class.java))
     }
 
+    private fun startSelfAssessmentActivity() {
+        startActivity(Intent(this, SelfAssessmentActivity::class.java))
+    }
+
+    private fun startMatchingPrefsActivity() {
+        startActivity(Intent(this, MatchingPrefsActivity::class.java))
+    }
+
     private fun initializeAsync() = GlobalScope.launch(Dispatchers.Main) {
         ProgressDialog(this@MainActivity).apply {
             setCancelable(false)
@@ -72,6 +80,10 @@ class MainActivity : AppCompatActivity() {
             when (user.state) {
                 // Registered, but photos aren't uploaded yet or haven't uploaded enough
                 State.Registered -> startPhotoUploadActivity()
+                // Photo Uploaded, needs to do self-assessment
+                State.PhotoUploaded -> startSelfAssessmentActivity()
+                // SelfAssessment done, needs to set preferences
+                State.SelfAssessmentDone -> startMatchingPrefsActivity()
             }
         }.hide()
     }

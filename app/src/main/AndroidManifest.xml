@@ -37,6 +37,14 @@
                 android:launchMode="singleTop"
                 android:name=".ui.PhotoUploadActivity"
                 android:label="@string/upp_upload_photos"/>
+        <activity
+                android:launchMode="singleTop"
+                android:name=".ui.SelfAssessmentActivity"
+                android:label="@string/self_assessment"/>
+        <activity
+                android:launchMode="singleTop"
+                android:name=".ui.MatchingPrefsActivity"
+                android:label="@string/matching_preferences"/>
 
         <provider
                 android:name="androidx.core.content.FileProvider"

@@ -24,6 +24,18 @@
     <string name="upp_already_uploaded">You have uploaded %d of %d (required) photos.</string>
     <string name="upp_not_enough">You have to upload %d photos before leaving.</string>
 
+    <!-- Assessment / Matching Preferences -->
+    <string name="self_assessment">Self-Assessment</string>
+    <string name="self_assessment_descr">Please rate yourself for the following traits.</string>
+    <string name="matching_preferences">Matching Preferences</string>
+    <string name="matching_preferences_descr">How would you like your partner to be in the following aspects?</string>
+    <string name="mpref_romance">Romance</string>
+    <string name="mpref_openness">Openness</string>
+    <string name="mpref_warmheartedness">Warmheartedness</string>
+    <string name="mpref_gender">Gender</string>
+    <string name="mpref_min_age">Minimum Age</string>
+    <string name="mpref_max_age">Maximum Age</string>
+
     <string name="invalid">Invalid %s</string>
     <string name="request_failure">An unknown error occurred during request</string>
     <string name="password_weak">Password too weak</string>
@@ -31,4 +43,5 @@
     <string name="refresh_failure">You are logged out from server. Please log-in again.</string>
     <string name="please_wait">Just a minute...</string>
     <string name="choose_photo">Choose a picture</string>
+    <string name="please_fill_in_all">Please fill in all fields.</string>
 </resources>

@@ -55,7 +55,7 @@ class RegisterActivity: WizardActivity() {
             getString(R.string.invalid, getString(R.string.reg_first_name)))
         txt_reg_last_name.validate({ !it.contains(" ") },
             getString(R.string.invalid, getString(R.string.reg_first_name)))
-        txt_reg_age.validate({ it.toInt() in (18..60) },
+        txt_reg_age.validate(::isAllowedAge,
             getString(R.string.invalid, getString(R.string.reg_age)))
     }
 }

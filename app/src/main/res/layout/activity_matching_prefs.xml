@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/matching_preferences_root"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:paddingStart="50dp"
+              android:paddingEnd="50dp"
+              android:paddingTop="30dp"
+              android:paddingBottom="30dp">
+    <TextView
+            android:text="@string/matching_preferences_descr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"/>
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content">
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_mpref_min_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/mpref_min_age"
+                android:inputType="numberDecimal"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content">
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_mpref_max_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/mpref_max_age"
+                android:inputType="numberDecimal"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mpref_gender"/>
+    <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+        <RadioButton android:id="@+id/mpref_gender_male"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:paddingEnd="2sp"
+                     android:text="@string/reg_gender_male"/>
+        <RadioButton android:id="@+id/mpref_gender_female"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="@string/reg_gender_female"
+                     android:checked="true"/>
+    </RadioGroup>
+    <include layout="@layout/user_prefs_common"/>
+</LinearLayout>

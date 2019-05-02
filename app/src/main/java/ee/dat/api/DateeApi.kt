@@ -1,9 +1,6 @@
 package ee.dat.api
 
-import ee.dat.bean.ApiResult
-import ee.dat.bean.OAuthResponse
-import ee.dat.bean.RegisterUserInfo
-import ee.dat.bean.User
+import ee.dat.bean.*
 import ee.dat.util.*
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
@@ -82,6 +79,10 @@ interface DateeApi {
     fun register(@Body info: RegisterUserInfo): Call<ApiResult<Void>>
     @GET("user/whoami")
     fun whoami(): Call<ApiResult<User>>
+    @PUT("user/self_assessment")
+    fun setSelfAssessment(@Body assessment: SelfAssessment): Call<ApiResult<Void>>
+    @PUT("user/matching_pref")
+    fun setMatchingPrefs(@Body prefs: MatchingPreferences): Call<ApiResult<Void>>
 
     // === Photo APIs ===
     @Multipart
