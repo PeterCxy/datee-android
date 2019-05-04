@@ -11,6 +11,7 @@ import ee.dat.R
 import ee.dat.api.DateeApi
 import ee.dat.bean.State
 import ee.dat.util.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
@@ -52,6 +53,25 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(this, MatchingPrefsActivity::class.java))
     }
 
+    private fun enterRatingState() {
+        supportFragmentManager.beginTransaction().replace(R.id.main_frame, RatingFragment()).commit()
+        initialized = true
+        DateeApplication.curUser!!.apply {
+            if (state == State.MatchingPreferencesSet) {
+                // Show information to let the user wait for verification
+                btn_match.text = getString(R.string.waiting_verification)
+                btn_match.isEnabled = false
+            } else if (state == State.Idle) {
+                // Idle state means the user hasn't been matched yet
+                // The system will match the user every day so the user can get a match every day
+                // so if it has been consumed then no more matches can be made anymore
+                // TODO: Maybe we need something to notify the user about an available match?
+                btn_match.text = getString(R.string.match_cooling_down)
+                btn_match.isEnabled = false
+            }
+        }
+    }
+
     private fun initializeAsync() = GlobalScope.launch(Dispatchers.Main) {
         ProgressDialog(this@MainActivity).apply {
             setCancelable(false)
@@ -84,6 +104,9 @@ class MainActivity : AppCompatActivity() {
                 State.PhotoUploaded -> startSelfAssessmentActivity()
                 // SelfAssessment done, needs to set preferences
                 State.SelfAssessmentDone -> startMatchingPrefsActivity()
+                // Otherwise: at least MatchingPreferences are set, drop the user into the rating fragment
+                // TODO: Allow the user to query for matches somehow after being activated
+                else -> enterRatingState()
             }
         }.hide()
     }

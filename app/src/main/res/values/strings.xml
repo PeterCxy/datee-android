@@ -3,6 +3,9 @@
     <string name="welcome">Find your soul mate.</string>
     <string name="login">Log-in</string>
     <string name="register">Register</string>
+    <string name="match">Start Matching</string>
+    <string name="waiting_verification">Please wait while we verify your identity</string>
+    <string name="match_cooling_down">Come here for matching tomorrow</string>
 
     <!-- Registration -->
     <string name="reg_email">Email</string>
@@ -35,6 +38,9 @@
     <string name="mpref_gender">Gender</string>
     <string name="mpref_min_age">Minimum Age</string>
     <string name="mpref_max_age">Maximum Age</string>
+
+    <!-- Rating -->
+    <string name="rating_descr">Give your rating for the following user:</string>
 
     <string name="invalid">Invalid %s</string>
     <string name="request_failure">An unknown error occurred during request</string>
