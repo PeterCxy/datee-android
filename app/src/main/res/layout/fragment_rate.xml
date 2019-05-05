@@ -34,6 +34,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
+    <ProgressBar
+            android:id="@+id/rating_progress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:indeterminate="true"
+            android:visibility="gone"
+            android:elevation="5dp"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            app:layout_constraintTop_toTopOf="@id/rating_frame"
+            app:layout_constraintStart_toStartOf="@id/rating_frame"
+            app:layout_constraintEnd_toEndOf="@id/rating_frame"/>
+
     <ImageView
             android:id="@+id/rating_photo"
             android:layout_width="0dp"
@@ -43,6 +57,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:elevation="5dp"
+            android:clickable="true"
             app:layout_constraintTop_toTopOf="@id/rating_frame"
             app:layout_constraintStart_toStartOf="@id/rating_frame"
             app:layout_constraintBottom_toTopOf="@+id/rating_bar"

@@ -6,6 +6,7 @@
     <string name="match">Start Matching</string>
     <string name="waiting_verification">Please wait while we verify your identity</string>
     <string name="match_cooling_down">Come here for matching tomorrow</string>
+    <string name="photo_gallery">Photo Gallery</string>
 
     <!-- Registration -->
     <string name="reg_email">Email</string>
