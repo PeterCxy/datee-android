@@ -39,6 +39,10 @@ class MatchInfoActivity: WizardActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean =
         when(item?.itemId) {
             R.id.match_photos -> { openGallery(); true }
+            R.id.match_reject -> {
+                GlobalScope.launch(Dispatchers.Main) { reject() }
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
 
@@ -91,5 +95,14 @@ class MatchInfoActivity: WizardActivity() {
                     finish()
                 }
             })
+    }
+
+    private suspend fun reject() = coroutineScope {
+        if (!working) working = true
+        withContext(Dispatchers.IO) {
+            DateeApi.api.rejectCurrentMatch().executeMaybe()
+        }.onErr { showErrorToast(it); finish(); return@coroutineScope }
+        finish()
+        return@coroutineScope
     }
 }

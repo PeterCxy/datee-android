@@ -72,6 +72,7 @@ class MainActivity : AppCompatActivity() {
         }
         btn_match.setOnClickListener {
             startActivity(Intent(this, MatchInfoActivity::class.java))
+            initialized = false // Refresh the state of MainActivity after accept / reject
         }
     }
 

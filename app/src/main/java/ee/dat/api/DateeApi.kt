@@ -116,4 +116,6 @@ interface DateeApi {
     // === Match APIs ===
     @GET("match/list")
     fun getMatchedUid(): Call<ApiResult<String>>
+    @DELETE("match/current")
+    fun rejectCurrentMatch(): Call<ApiResult<Void>>
 }
