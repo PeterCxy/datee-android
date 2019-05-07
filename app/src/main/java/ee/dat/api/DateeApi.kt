@@ -114,7 +114,7 @@ interface DateeApi {
     fun rateUser(@Path("uid") uid: String, @Field("score") score: Int): Call<ApiResult<Void>>
 
     // === Match APIs ===
-    @GET("match/list")
+    @GET("match/current")
     fun getMatchedUid(): Call<ApiResult<String>>
     @DELETE("match/current")
     fun rejectCurrentMatch(): Call<ApiResult<Void>>
