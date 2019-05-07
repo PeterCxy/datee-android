@@ -2,6 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/match_photos"
+        android:title="@string/match_photos"
+        android:icon="@drawable/ic_photo_library_black_24dp"
+        app:showAsAction="always"/>
+
+    <item
         android:id="@+id/match_reject"
         android:title="@string/match_reject"
         android:icon="@drawable/ic_reject_white_24dp"

@@ -45,6 +45,7 @@
 
     <!-- Match -->
     <string name="match_reject">Reject</string>
+    <string name="match_photos">Photos</string>
     <string name="match_descr">
         You have been matched with %s %s (age %d) from %s, %s, whose biological gender is %s. Please choose if you would like to accept or reject this match.\n
         \n

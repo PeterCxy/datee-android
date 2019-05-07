@@ -1,8 +1,10 @@
 package ee.dat.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.view.WindowManager
 import android.widget.Toast
 import com.squareup.picasso.Callback
@@ -17,6 +19,7 @@ class MatchInfoActivity: WizardActivity() {
     companion object {
         const val TAG = "MatchInfoActivity"
     }
+    private lateinit var photos: List<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +36,21 @@ class MatchInfoActivity: WizardActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean =
+        when(item?.itemId) {
+            R.id.match_photos -> { openGallery(); true }
+            else -> super.onOptionsItemSelected(item)
+        }
+
     override fun onFabClick() {
         Toast.makeText(this, "Accept: Not Implemented Yet", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun openGallery() {
+        val intent = Intent(this, GalleryActivity::class.java).apply {
+            putStringArrayListExtra("photos", ArrayList(photos))
+        }
+        startActivity(intent)
     }
 
     private suspend fun initialize() = coroutineScope {
@@ -54,7 +70,7 @@ class MatchInfoActivity: WizardActivity() {
             user.firstName, user.lastName, user.age, user.city, user.country, user.gender)
 
         // Load the photo of the matched person
-        val photos = withContext(Dispatchers.IO) {
+        photos = withContext(Dispatchers.IO) {
             DateeApi.api.listPhotos(uid).executeMaybe()
         }.onErr { showErrorToast(it); finish(); return@coroutineScope }!!
         DateeApi.picasso
