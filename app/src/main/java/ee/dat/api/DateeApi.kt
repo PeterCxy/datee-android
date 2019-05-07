@@ -50,7 +50,7 @@ interface DateeApi {
                 build()
             }
 
-        fun buildPhotoUrl(id: String): String = "$API_ENDPOINT/photos/$id"
+        fun buildPhotoUrl(id: String): String = "${API_ENDPOINT}photos/$id"
     }
 
     // === Auth APIs ===
