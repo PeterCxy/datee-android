@@ -45,6 +45,23 @@ interface UserInfo {
     val city: City
 }
 
+data class BaseUserInfo(
+    @SerializedName("email")
+    override val email: String,
+    @SerializedName("firstName")
+    override val firstName: String,
+    @SerializedName("lastName")
+    override val lastName: String,
+    @SerializedName("age")
+    override val age: Int,
+    @SerializedName("gender")
+    override val gender: Gender,
+    @SerializedName("country")
+    override val country: Country,
+    @SerializedName("city")
+    override val city: City
+): UserInfo
+
 data class RegisterUserInfo(
     // === Shared in UserInfo interface ===
     @SerializedName("email")

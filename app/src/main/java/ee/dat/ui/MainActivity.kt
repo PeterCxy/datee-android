@@ -70,6 +70,9 @@ class MainActivity : AppCompatActivity() {
                 btn_match.isEnabled = false
             }
         }
+        btn_match.setOnClickListener {
+            startActivity(Intent(this, MatchInfoActivity::class.java))
+        }
     }
 
     private fun initializeAsync() = GlobalScope.launch(Dispatchers.Main) {

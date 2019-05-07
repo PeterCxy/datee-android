@@ -97,6 +97,8 @@ interface DateeApi {
     fun setMatchingPrefs(@Body prefs: MatchingPreferences): Call<ApiResult<Void>>
     @GET("user/random")
     fun randomUser(): Call<ApiResult<String>>
+    @GET("user/{uid}")
+    fun getUser(@Path("uid") uid: String): Call<ApiResult<BaseUserInfo>>
 
     // === Photo APIs ===
     @Multipart
@@ -110,4 +112,8 @@ interface DateeApi {
     @FormUrlEncoded
     @PUT("rate/{uid}")
     fun rateUser(@Path("uid") uid: String, @Field("score") score: Int): Call<ApiResult<Void>>
+
+    // === Match APIs ===
+    @GET("match/list")
+    fun getMatchedUid(): Call<ApiResult<String>>
 }

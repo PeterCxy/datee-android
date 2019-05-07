@@ -43,6 +43,16 @@
     <!-- Rating -->
     <string name="rating_descr">Give your rating for the following user:</string>
 
+    <!-- Match -->
+    <string name="match_reject">Reject</string>
+    <string name="match_descr">
+        You have been matched with %s %s (age %d) from %s, %s, whose biological gender is %s. Please choose if you would like to accept or reject this match.\n
+        \n
+        Note that if you choose to accept, you will need to provide information on when and where you are available, so that a proper date can be set up. However, there is no guarantee that the other person you are matched with will choose to accept &#8212; if ANY of you rejected, this match will be invalidated.\n
+        \n
+        If you choose to reject, then no new match can be made within the same day.
+    </string>
+
     <string name="invalid">Invalid %s</string>
     <string name="request_failure">An unknown error occurred during request</string>
     <string name="password_weak">Password too weak</string>

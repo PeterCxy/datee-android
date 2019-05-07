@@ -49,6 +49,10 @@
                 android:launchMode="singleTop"
                 android:name=".ui.GalleryActivity"
                 android:label="@string/photo_gallery"/>
+        <activity
+                android:launchMode="singleTop"
+                android:name=".ui.MatchInfoActivity"
+                android:label=""/>
 
         <provider
                 android:name="androidx.core.content.FileProvider"
