@@ -15,9 +15,9 @@ import retrofit2.http.*
 interface DateeApi {
     companion object {
         // TODO: Change this to non-internal when beta testing
-        private const val API_ENDPOINT = "http://192.168.1.115:23456"
-        private const val CLIENT_ID = "default"
-        private const val CLIENT_SECRET = "123456789"
+        private const val API_ENDPOINT = "https://test.dat.ee/api/"
+        private const val CLIENT_ID = "client_app_android"
+        private const val CLIENT_SECRET = "c2197375dbade0882d81794ab30b8ff5"
         val api: DateeApi by lazy {
             val retrofit = with(Retrofit.Builder()) {
                 baseUrl(API_ENDPOINT)
